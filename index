@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f6fcc9;
+    }
+
+
+    .navbar {
+      background-color: #e63731;
+    }
+
+    .navbar-brand img {
+      width: 50px;
+      height: 50px;
+    }
+
+    .navbar-brand span {
+      color: white;
+    }
+  </style>
+  <title>Document</title>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="https://png.pngtree.com/png-vector/20211023/ourmid/pngtree-salon-logo-png-image_4004444.png"
+          alt="Logo" class="me-2" style="border-radius: 50%;">
+      </a>
+    </div>
+  </nav>
+
+
+  <!-- Upload Section -->
+  <section class="py-5 bg-light">
+    <div class="container text-center">
+      <h2 class="mb-4 fw-bold">Upload Your Image</h2>
+
+      <!-- Upload Box -->
+      <div id="upload-box" class="border border-2 border-primary rounded-3 p-5 bg-white"
+        style="cursor: pointer; position: relative;" onclick="document.getElementById('imageUpload').click();"
+        ondragover="event.preventDefault();" ondrop="handleDrop(event);">
+
+        <i class="bi bi-cloud-arrow-up fs-1 text-primary"></i>
+        <p class="mt-3">Click or Drag & Drop your image here</p>
+
+        <!-- Hidden File Input -->
+        <input type="file" id="imageUpload" accept="image/*" onchange="previewImage(event)" style="display: none;">
+      </div>
+
+      <!-- Image Preview -->
+      <div id="preview-container" class="mt-4" style="display: none;">
+        <h5 class="mb-3">Image Preview:</h5>
+        <img id="preview" src="#" alt="Image Preview" class="img-fluid rounded shadow" style="max-height: 400px;">
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhance Button + Spinner -->
+  <section class="py-4 bg-white text-center">
+    <div class="container">
+
+      <!-- Enhance Button -->
+      <button id="enhanceBtn" class="btn btn-success btn-lg px-4" onclick="enhanceImage()">
+        <i class="bi bi-magic"></i> Enhance Image
+      </button>
+
+      <!-- Loading Spinner -->
+      <div id="loadingSpinner" class="mt-4" style="display: none;">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Processing...</span>
+        </div>
+        <p class="mt-2">Enhancing your image, please wait...</p>
+      </div>
+
+      <!-- Enhanced Image Result -->
+      <div id="enhanced-result" class="mt-4" style="display: none;">
+        <h5 class="mb-3">Enhanced Image:</h5>
+        <img id="enhancedImage" src="#" class="img-fluid rounded shadow" style="max-height: 400px;">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Compare Section -->
+<section class="py-4 bg-light text-center" id="compareSection" style="display: none;">
+  <div class="container">
+    <h3 class="fw-bold mb-4">Compare Images</h3>
+
+    <!-- Toggle Button -->
+    <button id="compareToggleBtn" class="btn btn-outline-primary mb-4" onclick="toggleCompare()">Show Comparison</button>
+
+    <!-- Comparison Area -->
+    <div id="comparisonArea" class="row justify-content-center" style="display: none;">
+      
+      <div class="col-md-5 mb-3">
+        <h6>Original Image</h6>
+        <img id="originalImageCompare" src="#" class="img-fluid rounded shadow" style="max-height: 300px;">
+      </div>
+
+      <div class="col-md-5 mb-3">
+        <h6>Enhanced Image</h6>
+        <img id="enhancedImageCompare" src="#" class="img-fluid rounded shadow" style="max-height: 300px;">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Download Section -->
+<section class="py-4 text-center" id="downloadSection" style="display: none;">
+  <div class="container">
+    <h3 class="fw-bold mb-4">Download Your Enhanced Image</h3>
+
+    <a id="downloadBtn" href="#" class="btn btn-primary btn-lg" download="enhanced_image.png">
+      <i class="bi bi-download"></i> Download Enhanced Image
+    </a>
+  </div>
+</section>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
